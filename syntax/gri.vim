@@ -1,10 +1,8 @@
 " Vim syntax file
-" Language:	gri-2.10.1
-" Maintainer:	Patricio Toledo patoledo@ing.puc.cl from gnuplot.vim
-" Last Change:	lun jun 17 22:31:29 CLT 2002
+" Language:	gri-2.12.1
+" Maintainer:	Patricio Toledo patoledo@ing.puc.cl
+" Last Change:	mar oct 15 21:46:19 CLST 2002
 " Filenames:    *.gri
-" URL:		
-"
 
 " For version 5.x: Clear all syntax items
 " For version 6.x: Quit when a syntax file was already loaded
@@ -16,41 +14,36 @@ endif
 
 "integer number, or floating point number without a dot and with "f".
 syn case ignore
-syn match	griNumber	"\<[0-9]\+\(u\=l\=\|lu\|f\)\>"
+syn match	griNumber	"\<\d\+\(u\=l\=\|lu\|f\)\>"
 "floating point number, with dot, optional exponent
-syn match	griFloat	"\<[0-9]\+\.[0-9]*\(e[-+]\=[0-9]\+\)\=[fl]\=\>"
+syn match	griFloat	"\<\d\+\.\d*\(e[-+]\=\d\+\)\=[fl]\=\>"
 "floating point number, starting with a dot, optional exponent
-syn match	griFloat	"\.[0-9]\+\(e[-+]\=[0-9]\+\)\=[fl]\=\>"
+syn match	griFloat	"\.\d\+\(e[-+]\=\d\+\)\=[fl]\=\>"
 "floating point number, without dot, with exponent
-syn match	griFloat	"\<[0-9]\+e[-+]\=[0-9]\+[fl]\=\>"
+syn match	griFloat	"\<\d\+e[-+]\=\d\+[fl]\=\>"
 "hex number
-syn match	griNumber	"\<0x[0-9a-f]\+\(u\=l\=\|lu\)\>"
-syn case match
-"flag an octal number with wrong digits by not hilighting
-syn match	griOctalError	"\<0[0-7]*[89]"
+syn match	griNumber	"\<\x\+\(u\=l\=\|lu\)\>"
 
 " comments + strings
 syn region	griComment	start="#" end="$"
 syn region	griString	start=+"+ skip=+\\"+ end=+"+
 syn region	griString	start=+'+	     end=+'+
 
-" Programación
+" Programing
 syn keyword     griStatement    break return continue
 syn keyword     griConditional  if else end
 syn keyword     griRepeat       while 
 
-"set variables
-syn region	griVariable     start=+\.+  end=+\.+    oneline
+"set Gri variables, things like .ymin. or ..ymax.. or ...xmin...
+syn region	griVariable     start=+\.+ end=+\.+ oneline
 syn region	griVariable     start=+\.\.+ end=+\.\.+ oneline
 syn region	griVariable     start=+\.\.\.+ end=+\.\.\.+ oneline
 
-" set sinonimos
 syn match 	griSynonims     "\\[a-zA-Z@]\+" 
 
-" set delimitadores
-syn region 	griMatcher	matchgroup=Delimiter start="{" skip="\\\\\|\\[{}]"	end="}"
+syn region 	griMatcher	matchgroup=Delimiter start="{" skip="\\\\\|\\[{}]" end="}"
 
-" commands
+" Gri special commands
 syn keyword	griSet		set convert draw create
 syn keyword	griTo		to at
 syn keyword	griSetTo	columns grid spline image grayscale graylevel
