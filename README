@@ -1,0 +1,3 @@
+This is a mirror of http://www.vim.org/scripts/script.php?script_id=395
+
+gri.vim provides basic syntax support for Gri, it is based mainly in gnuplot.vim, as it is a scripting language for scientific plots. 
